@@ -6,5 +6,5 @@ export interface Terrain {
     mapDC: number, 
     entertainDC: number, 
     watchDC: number,
-    id?: number
+    id?: string
 }

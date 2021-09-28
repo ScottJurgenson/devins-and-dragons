@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
-import { Character } from "./models/Character"
+import { Character } from './models/Character';
 import { Terrain } from './models/terrain';
 
-const baseUrl = 'http://localhost:3000'
-
-
+const baseUrl = 'http://localhost:3000';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DBQueryService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  private async request(method: string, url: string, data?: any, responseType?: any) {
-
+  private async request(
+    method: string,
+    url: string,
+    data?: any,
+    responseType?: any
+  ) {
     console.log('request ' + JSON.stringify(data));
     const result = this.http.request(method, url, {
       body: data,
@@ -34,13 +34,44 @@ export class DBQueryService {
     return this.request('post', `${baseUrl}/char/create`, char);
   }
 
+  updateChar(char: Character) {
+    console.log('createChar ' + JSON.stringify(char));
+    let id = char.id
+    return this.request('post', `${baseUrl}/char/update/${id}`, char);
+  }  
+
   getAllChar() {
-    return this.request('get', `${baseUrl}/char`)
+    return this.request('get', `${baseUrl}/char`);
   }
+
+  getChar(id: string) {
+    return this.request('get', `${baseUrl}/char/${id}`);
+  }
+
+  deleteChar(id: string) {
+    return this.request('get', `${baseUrl}/char/delete/${id}`)
+  }
+
+  createTerrain(terrain: Terrain) {
+    console.log('createTerrain ' + JSON.stringify(terrain));
+    return this.request('post', `${baseUrl}/terrain/create`, terrain);
+  }
+
+  updateTerrain(terrain: Terrain) {
+    console.log('updateTerrain ' + JSON.stringify(terrain));
+    let id = terrain.id
+    return this.request('post', `${baseUrl}/terrain/update/${id}`, terrain);
+  }  
 
   getAllTerrain() {
-    return this.request('get', `${baseUrl}/terrain`)
+    return this.request('get', `${baseUrl}/terrain`);
   }
 
+  getTerrain(id: string) {
+    return this.request('get', `${baseUrl}/terrain/${id}`);
+  }
 
+  deleteTerrain(id: string) {
+    return this.request('get', `${baseUrl}/terrain/delete/${id}`)
+  }
 }

@@ -6,5 +6,5 @@ export interface Character {
     intelligence: number;
     wisdom: number, 
     charisma: number,
-    id?: number
+    id?: string
 }
