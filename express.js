@@ -15,13 +15,52 @@ app.get("/test", (req, res, next) => {
     res.json("nice");
    });
 
-app.get("/getAllChar", async function(req, res, next) {
+app.get("/char", async function(req, res, next) {
     return charDB.getAll().then(response => res.json(response))
    });
 
-app.get("/getAllTerrain", async function(req, res, next) {
+app.post('/char/create', function (req, res, next) {
+    console.log(req.body)
+    res.json(req.body)
+  })
+
+app.post('/char/update/:id', function (req, res, next) {
+    console.log(req.body)
+    res.json(req.body)
+  })
+
+app.get("/char/delete/:id", async function(req, res, next) {
+    return charDB.delete(id).then(response => res.json(response))
+   });     
+
+app.get("/char/:id", async function(req, res, next) {
+    return charDB.getById(id).then(response => res.json(response))
+   });   
+
+
+app.get("/terrain", async function(req, res, next) {
     return terrainDB.getAll().then(response => res.json(response))
    });
+
+app.post('/terrain/create', function (req, res, next) {
+    console.log(req.body)
+    res.json(req.body)
+  })
+
+app.post('/terrain/update/:id', function (req, res, next) {
+    console.log(req.body)
+    res.json(req.body)
+  })
+
+app.get("/terrain/delete/:id", async function(req, res, next) {
+    return terrainDB.delete(id).then(response => res.json(response))
+   });
+
+app.get("/terrain/:id", async function(req, res, next) {
+    return terrainDB.getById(id).then(response => res.json(response))
+   });
+   
+
 
 app.listen(3000, () => {
  console.log("Server running on port 3000");
