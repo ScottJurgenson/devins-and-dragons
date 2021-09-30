@@ -4,11 +4,13 @@ const Promise = require("bluebird");
 const AppDAO = require("./db/DAO");
 const CharDB = require("./db/CharDB");
 const TerrainDB = require("./db/TerrainDB");
+var cors = require('cors')
 
 const DAO = new AppDAO("./db/database.sqlite3");
 const charDB = new CharDB(DAO);
 const terrainDB = new TerrainDB(DAO);
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/test", (req, res, next) => {
@@ -16,6 +18,7 @@ app.get("/test", (req, res, next) => {
 });
 
 app.get("/char", async function (req, res, next) {
+  console.log(req);
   return charDB.getAll().then((response) => res.json(response));
 });
 

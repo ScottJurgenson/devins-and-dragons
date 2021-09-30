@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { observable, throwError } from 'rxjs';
 
-import { Character } from './models/Character';
+import { Character, charList } from './models/character';
 import { Terrain } from './models/terrain';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -11,67 +13,53 @@ const baseUrl = 'http://localhost:3000';
 })
 export class DBQueryService {
   constructor(private http: HttpClient) {}
+ 
 
-  private async request(
-    method: string,
-    url: string,
-    data?: any,
-    responseType?: any
-  ) {
-    console.log('request ' + JSON.stringify(data));
-    const result = this.http.request(method, url, {
-      body: data,
-      responseType: responseType || 'json',
-      observe: 'body',
-    });
-    return new Promise<any>((resolve, reject) => {
-      result.subscribe(resolve as any, reject as any);
-    });
-  }
+//TODO OBSERVABLES
 
-  createChar(char: Character) {
-    console.log('createChar ' + JSON.stringify(char));
-    return this.request('post', `${baseUrl}/char/create`, char);
-  }
+//   createChar(char: Character) {
+//     console.log('createChar ' + JSON.stringify(char));
+//     return this.request('post', `${baseUrl}/char/create`, char);
+//   }
 
-  updateChar(char: Character) {
-    console.log('createChar ' + JSON.stringify(char));
-    let id = char.id
-    return this.request('post', `${baseUrl}/char/update/${id}`, char);
-  }  
+//   updateChar(char: Character) {
+//     console.log('createChar ' + JSON.stringify(char));
+//     let id = char.id
+//     return this.request('post', `${baseUrl}/char/update/${id}`, char);
+//   }  
 
   getAllChar() {
-    return this.request('get', `${baseUrl}/char`);
+    return this.http.get(`${baseUrl}/char`, {observe: 'body', responseType: 'json'});
   }
 
   getChar(id: string) {
-    return this.request('get', `${baseUrl}/char/${id}`);
+    return this.http.get<Character>(`${baseUrl}/char/${id}`, {observe: 'body', responseType: 'json'});
   }
 
   deleteChar(id: string) {
-    return this.request('get', `${baseUrl}/char/delete/${id}`)
+    this.http.get(`${baseUrl}/char/delete/${id}`, {observe: 'body', responseType: 'json'});
   }
 
-  createTerrain(terrain: Terrain) {
-    console.log('createTerrain ' + JSON.stringify(terrain));
-    return this.request('post', `${baseUrl}/terrain/create`, terrain);
-  }
+//   createTerrain(terrain: Terrain) {
+//     console.log('createTerrain ' + JSON.stringify(terrain));
+//     return this.request('post', `${baseUrl}/terrain/create`, terrain);
+//   }
 
-  updateTerrain(terrain: Terrain) {
-    console.log('updateTerrain ' + JSON.stringify(terrain));
-    let id = terrain.id
-    return this.request('post', `${baseUrl}/terrain/update/${id}`, terrain);
-  }  
+//   updateTerrain(terrain: Terrain) {
+//     console.log('updateTerrain ' + JSON.stringify(terrain));
+//     let id = terrain.id
+//     return this.request('post', `${baseUrl}/terrain/update/${id}`, terrain);
+//   }  
 
   getAllTerrain() {
-    return this.request('get', `${baseUrl}/terrain`);
+    return this.http.get(`${baseUrl}/terrain`, {observe: 'body', responseType: 'json'});
   }
 
-  getTerrain(id: string) {
-    return this.request('get', `${baseUrl}/terrain/${id}`);
+  getTerrain<Terrain>(id: string) {
+    return this.http.get(`${baseUrl}/terrain/${id}`, {observe: 'body', responseType: 'json'});
   }
 
   deleteTerrain(id: string) {
-    return this.request('get', `${baseUrl}/terrain/delete/${id}`)
+    this.http.get(`${baseUrl}/terrain/delete/${id}`, {observe: 'body', responseType: 'json'});
   }
-}
+ }

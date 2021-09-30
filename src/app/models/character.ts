@@ -8,3 +8,5 @@ export interface Character {
     charisma: number,
     id?: string
 }
+
+export interface charList extends Array<Character> {}
