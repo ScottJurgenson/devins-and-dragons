@@ -15,7 +15,6 @@ import { PlayerCardComponent } from './player-card/player-card.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
