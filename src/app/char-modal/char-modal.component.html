@@ -1,1 +1,163 @@
-<p>char-modal works!</p>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h4 class="modal-title">Add/Edit Character</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Character Name"
+                aria-label="Name"
+              />
+            </div>
+          </div>
+        </div>
+  
+          <div class="row">
+            <div class="col">
+              STR
+            </div>
+            <div class="col">
+              DEX
+            </div>
+            <div class="col">
+              CON
+            </div>
+            <div class="col">
+              INT
+            </div>
+            <div class="col">
+              WIS
+            </div>
+            <div class="col">
+              CHA
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            <input
+                id="strength"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Strength"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="dexterity"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Dexterity"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="constitution"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Constitution"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="intelligence"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Intelligence"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="wisdom"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Wisdom"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="charisma"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Charisma"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+            <input
+                id="strengthMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Strength Modifier"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="dexterityMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Dexterity Modifier"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="constitutionMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Constitution Modifier"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="intelligenceMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Intelligence Modifier"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="wisdomMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Wisdom Modifier"
+              />
+            </div>
+            <div class="col">
+            <input
+                id="charismaMod"
+                type="number"
+                class="form-control"
+                placeholder=0
+                aria-label="Charisma Modifier"
+              />
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-success" (click)="onSubmit()">
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="activeModal.close('Close click')"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
