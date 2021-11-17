@@ -8,53 +8,32 @@ class CharDB {
         CREATE TABLE IF NOT EXISTS chars (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           charName TEXT,
-          strength INTEGER,
+          survival INTEGER,
           dexterity INTEGER,
-          constitution INTEGER,
+          perception INTEGER,
           intelligence INTEGER,
-          wisdom INTEGER,
-          charisma INTEGER,
-          strengthMod INTEGER,
-          dexterityMod INTEGER,
-          constitutionMod INTEGER,
-          intelligenceMod INTEGER,
-          wisdomMod INTEGER,
-          charismaMod INTEGER          
+          charisma INTEGER,        
           )`;
     return this.DAO.run(sql);
   }
 
   create(
     charName,
-    strength,
+    survival,
     dexterity,
-    constitution,
+    perception,
     intelligence,
-    wisdom,
-    charisma,
-    strengthMod,
-    dexterityMod,
-    constitutionMod,
-    intelligenceMod,
-    wisdomMod,
-    charismaMod
+    charisma
   ) {
     return this.DAO.run(
-      "INSERT INTO chars (charName, strength, dexterity, constitution, intelligence, wisdom, charisma, strengthMod, dexterityMod, constitutionMod, intelligenceMod, wisdomMod, charismaMod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO chars (charName, survival, dexterity, perception, intelligence, charisma) VALUES (?, ?, ?, ?, ?, ?)",
       [
         charName,
-        strength,
+        survival,
         dexterity,
-        constitution,
+        perception,
         intelligence,
-        wisdom,
-        charisma,
-        strengthMod,
-        dexterityMod,
-        constitutionMod,
-        intelligenceMod,
-        wisdomMod,
-        charismaMod
+        charisma
       ]
     );
   }
@@ -63,50 +42,29 @@ class CharDB {
     const {
       id,
       charName,
-      strength,
+      survival,
       dexterity,
-      constitution,
+      perception,
       intelligence,
-      wisdom,
-      charisma,
-      strengthMod,
-      dexterityMod,
-      constitutionMod,
-      intelligenceMod,
-      wisdomMod,
-      charismaMod
+      charisma
     } = char;
     return this.DAO.run(
       `UPDATE chars
       SET charname = ?,
-        strength = ?,
+        survival = ?,
         dexterity = ?,
-        constitution = ?,
+        perception = ?,
         intelligence = ?,
-        wisdom = ?,
-        charisma = ?,
-        strengthMod = ?,
-        dexterityMod = ?,
-        constitutionMod = ?,
-        intelligenceMod = ?,
-        wisdomMod = ?,
-        charismaMod = ?
+        charisma = ?
       WHERE id = ?`,
       [
         charName,
-        strength,
+        survival,
         dexterity,
-        constitution,
+        perception,
         intelligence,
-        wisdom,
         charisma,
-        id,
-        strengthMod,
-        dexterityMod,
-        constitutionMod,
-        intelligenceMod,
-        wisdomMod,
-        charismaMod
+        id
       ]
     );
   }

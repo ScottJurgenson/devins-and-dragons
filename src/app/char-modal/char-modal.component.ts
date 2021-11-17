@@ -16,19 +16,11 @@ export class CharModalComponent {
 
   charForm = new FormGroup({
     charName: new FormControl('', Validators.required),
-    str: new FormControl('', Validators.required),
-    dex: new FormControl('', Validators.required),
-    con: new FormControl('', Validators.required),
-    int: new FormControl('', Validators.required),
-    wis: new FormControl('', Validators.required),
-    cha: new FormControl('', Validators.required),
-    strMod: new FormControl('', Validators.required),
-    dexMod: new FormControl('', Validators.required),
-    conMod:new FormControl('', Validators.required),
-    intMod: new FormControl('', Validators.required),
-    wisMod: new FormControl('', Validators.required),
-    chaMod: new FormControl('', Validators.required)
-    
+    survival: new FormControl('', Validators.required),
+    dexterity: new FormControl('', Validators.required),
+    perception: new FormControl('', Validators.required),
+    intelligence: new FormControl('', Validators.required),
+    charisma: new FormControl('', Validators.required),
   }
   );
 
@@ -39,18 +31,11 @@ export class CharModalComponent {
     if (this.charForm.valid){
       let newChar: Character = {    
         charName: this.charForm.value.charName,
-        strength: this.charForm.value.str,
-        dexterity: this.charForm.value.dex,
-        constitution: this.charForm.value.con,
-        intelligence: this.charForm.value.int,
-        wisdom: this.charForm.value.wis, 
-        charisma: this.charForm.value.cha,
-        strengthMod: this.charForm.value.strMod,
-        dexterityMod: this.charForm.value.dexMod,
-        constitutionMod: this.charForm.value.conMod,
-        intelligenceMod: this.charForm.value.intMod,
-        wisdomMod: this.charForm.value.wisMod,
-        charismaMod: this.charForm.value.chaMod
+        survival: this.charForm.value.survival,
+        dexterity: this.charForm.value.dexterity,
+        perception: this.charForm.value.perception,
+        intelligence: this.charForm.value.intelligence,
+        charisma: this.charForm.value.charisma,
       }
       this.dbQueryService.createChar(newChar).subscribe((data: any) => {
       })
