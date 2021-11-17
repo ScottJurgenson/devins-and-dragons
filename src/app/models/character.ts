@@ -6,6 +6,12 @@ export interface Character {
     intelligence: number;
     wisdom: number, 
     charisma: number,
+    strengthMod: number;
+    dexterityMod: number;
+    constitutionMod: number;
+    intelligenceMod: number;
+    wisdomMod: number, 
+    charismaMod: number,
     id?: string
 }
 

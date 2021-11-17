@@ -12,13 +12,12 @@ import { CharModalComponent } from './char-modal/char-modal.component';
 export class AppComponent {
 
   title = 'devins-and-dragons';
-  charList = ''
-
+  charList: Character[]
   constructor(private dbQueryService: DBQueryService, private modalService: NgbModal ) {}
 
   ngOnInit() {
     this.dbQueryService.getAllChar().subscribe((data: any) => {
-      this.charList = JSON.stringify(data)
+      this.charList = data
       console.log("charlist:" + this.charList)
     })
   }

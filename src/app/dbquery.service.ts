@@ -17,10 +17,9 @@ export class DBQueryService {
 
 //TODO OBSERVABLES
 
-//   createChar(char: Character) {
-//     console.log('createChar ' + JSON.stringify(char));
-//     return this.request('post', `${baseUrl}/char/create`, char);
-//   }
+  createChar(char: Character) {
+    return this.http.post(`${baseUrl}/char/create`, char);
+  }
 
 //   updateChar(char: Character) {
 //     console.log('createChar ' + JSON.stringify(char));

@@ -13,7 +13,13 @@ class CharDB {
           constitution INTEGER,
           intelligence INTEGER,
           wisdom INTEGER,
-          charisma INTEGER
+          charisma INTEGER,
+          strengthMod INTEGER,
+          dexterityMod INTEGER,
+          constitutionMod INTEGER,
+          intelligenceMod INTEGER,
+          wisdomMod INTEGER,
+          charismaMod INTEGER          
           )`;
     return this.DAO.run(sql);
   }
@@ -25,10 +31,16 @@ class CharDB {
     constitution,
     intelligence,
     wisdom,
-    charisma
+    charisma,
+    strengthMod,
+    dexterityMod,
+    constitutionMod,
+    intelligenceMod,
+    wisdomMod,
+    charismaMod
   ) {
     return this.DAO.run(
-      "INSERT INTO chars (charName, strength, dexterity, constitution, intelligence, wisdom) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO chars (charName, strength, dexterity, constitution, intelligence, wisdom, charisma, strengthMod, dexterityMod, constitutionMod, intelligenceMod, wisdomMod, charismaMod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         charName,
         strength,
@@ -37,6 +49,12 @@ class CharDB {
         intelligence,
         wisdom,
         charisma,
+        strengthMod,
+        dexterityMod,
+        constitutionMod,
+        intelligenceMod,
+        wisdomMod,
+        charismaMod
       ]
     );
   }
@@ -51,6 +69,12 @@ class CharDB {
       intelligence,
       wisdom,
       charisma,
+      strengthMod,
+      dexterityMod,
+      constitutionMod,
+      intelligenceMod,
+      wisdomMod,
+      charismaMod
     } = char;
     return this.DAO.run(
       `UPDATE chars
@@ -60,7 +84,13 @@ class CharDB {
         constitution = ?,
         intelligence = ?,
         wisdom = ?,
-        charisma = ?
+        charisma = ?,
+        strengthMod = ?,
+        dexterityMod = ?,
+        constitutionMod = ?,
+        intelligenceMod = ?,
+        wisdomMod = ?,
+        charismaMod = ?
       WHERE id = ?`,
       [
         charName,
@@ -71,6 +101,12 @@ class CharDB {
         wisdom,
         charisma,
         id,
+        strengthMod,
+        dexterityMod,
+        constitutionMod,
+        intelligenceMod,
+        wisdomMod,
+        charismaMod
       ]
     );
   }

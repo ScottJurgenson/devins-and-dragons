@@ -2,11 +2,16 @@
   <img src="../assets/Title.png">
   <h5> A custom 5e travel system</h5>
 </div>
-<div class="jumbotron" style="width: 40%; margin-left: auto; margin-right: auto;">
+<div class="jumbotron" style="width: 40%; margin-left: auto; margin-right: auto;"  *ngIf="!charList">
   <h1 class="display-4">Welcome to Devins and Dragons</h1>
   <p class="lead">Please add a character to begin</p>
   <hr class="my-4">
   <p class="lead">
     <button class="btn btn-lg btn-outline-primary" (click)="open()">Add A New Hero</button>
   </p>
+</div>
+<div *ngIf="charList">
+    <div *ngFor="let char of charList"><app-player-card [char]="char"></app-player-card>
+    </div>
+    <button class="btn btn-lg btn-outline-primary" (click)="open()">Add A New Hero</button>
 </div>

@@ -18,17 +18,19 @@ app.get("/test", (req, res, next) => {
 });
 
 app.get("/char", async function (req, res, next) {
-  console.log(req);
+  console.log("nope");
   return charDB.getAll().then((response) => res.json(response));
 });
 
 app.post("/char/create", function (req, res, next) {
-  console.log(req.body);
-  res.json(req.body);
+  charDB.createTable();
+  let char = req.body;
+  console.log(char)
+  return charDB.create(char.charName, char.strength, char.dexterity, char.constitution, char.intelligence, char.wisdom, char.charisma, char.strengthMod, char.dexterityMod, char.constitutionMod, char.intelligenceMod, char.wisdomMod, char.charismaMod)
 });
 
 app.post("/char/update/:id", function (req, res, next) {
-  console.log(req.body);
+  console.log("id");
   res.json(req.body);
 });
 
@@ -45,7 +47,7 @@ app.get("/terrain", async function (req, res, next) {
 });
 
 app.post("/terrain/create", function (req, res, next) {
-  console.log(req.body);
+  console.log("terrain");
   res.json(req.body);
 });
 
