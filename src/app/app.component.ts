@@ -27,7 +27,7 @@ export class AppComponent {
       ) {
 
       
-    this.rollSubscription = rollService.rollData$.subscribe(
+    this.rollSubscription = rollService.rollResult$.subscribe(
         rollData => {
           console.log(rollData)
         }

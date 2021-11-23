@@ -4,7 +4,6 @@ import { TerrainService } from '../services/terrain.service';
 import { Subscription } from 'rxjs';
 
 import { Character } from '../models/character';
-import { getParseErrors } from '@angular/compiler';
 import { RollService } from '../services/roll.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class PlayerCardComponent implements OnInit {
   @Input()
   char: Character;
   selectedTerrain: string = "Road"
-  action: string = "nav"
+  action: string = "navigate/track"
   terrainSubscription: Subscription
   rollSubscription: Subscription
   terrainOptions = [
@@ -43,7 +42,7 @@ export class PlayerCardComponent implements OnInit {
     );
     this.rollSubscription = this.rollService.roll$.subscribe(
       roll => {
-        this.rollService.sendRollDataToParent({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: -1} );
+        this.rollService.recieveRollData({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: -1} );
       }
     );
    }

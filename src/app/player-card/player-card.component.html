@@ -3,13 +3,13 @@
       <h5 class="card-title">{{char.charName}}</h5>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio1" (click)="selectAction('nav')">Nav/Track</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio1" (click)="selectAction('navigate/track')">Nav/Track</label>
       
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio2" autocomplete="off">
         <label class="btn btn-outline-primary" for="{{char.charName}}btnradio2" (click)="selectAction('scout')">Scout</label>
       
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio3" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio3" (click)="selectAction('hunt')">Hunt/Forage</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio3" (click)="selectAction('hunt/forage')">Hunt/Forage</label>
 
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio4" autocomplete="off">
         <label class="btn btn-outline-primary" for="{{char.charName}}btnradio4" (click)="selectAction('map')">Map</label>
