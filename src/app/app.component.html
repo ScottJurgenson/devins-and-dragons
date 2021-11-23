@@ -11,14 +11,14 @@
   </p>
 </div>
 <div *ngIf="charList">
-  <img src="/assets/road icon.png" width="100" height="100" (click)="this.setTerrain('road')" />
-  <img src="/assets/grass icon.png" width="100" height="100" (click)="this.setTerrain('grass')" />
-  <img src="/assets/river icon.png" width="100" height="100" (click)="this.setTerrain('river')" />
-  <img src="/assets/forest icon.png" width="100" height="100" (click)="this.setTerrain('forest')" />
-  <img src="/assets/forest on a hill icon.png" width="100" height="100" (click)="this.setTerrain('forresthill')" />
-  <img src="/assets/swamp icon.png" width="100" height="100" (click)="this.setTerrain('swamp')" />
-  <img src="/assets/marsh icon.png" width="100" height="100" (click)="this.setTerrain('marsh')" />
-    <img src="/assets/cliff icon.png" width="100" height="100" (click)="this.setTerrain('cliff')" />
+  <img src="/assets/road icon.png" width="100" height="100" (click)="this.setTerrain('Road')" />
+  <img src="/assets/grass icon.png" width="100" height="100" (click)="this.setTerrain('Grass')" />
+  <img src="/assets/river icon.png" width="100" height="100" (click)="this.setTerrain('River')" />
+  <img src="/assets/forest icon.png" width="100" height="100" (click)="this.setTerrain('Forest')" />
+  <img src="/assets/forest on a hill icon.png" width="100" height="100" (click)="this.setTerrain('Forest/Hill')" />
+  <img src="/assets/swamp icon.png" width="100" height="100" (click)="this.setTerrain('Swamp')" />
+  <img src="/assets/marsh icon.png" width="100" height="100" (click)="this.setTerrain('Marsh')" />
+    <img src="/assets/cliff icon.png" width="100" height="100" (click)="this.setTerrain('Cliff')" />
     <div *ngFor="let char of charList"><app-player-card [char]="char"></app-player-card>
     </div>
     <button class="btn btn-lg btn-outline-primary" (click)="roll()">Roll</button>

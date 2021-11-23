@@ -16,24 +16,43 @@ export class PlayerCardComponent implements OnInit {
 
   @Input()
   char: Character;
-  terrain = "grass"
+  selectedTerrain: string = "Road"
+  action: string = "nav"
   terrainSubscription: Subscription
   rollSubscription: Subscription
+  terrainOptions = [
+      { name: "Road", value: "Road" },
+      { name: "Grass", value: "Grass" },
+      { name: "River", value: "River" },
+      { name: "Forest", value: "Forest" },
+      { name: "Hill", value: "Hill" },
+      { name: "Forest/Hill", value: "Forest/Hill" },
+      { name: "Forest/Dense", value:"Forest/Dense" },
+      { name: "Swamp", value: "Swamp" },
+      { name: "Marsh", value: "Marsh" },
+      { name: "Mountain", value: "Mountain" },
+      { name: "Cliff", value: "Cliff" },
+  ]
+
 
   constructor(private terrainService: TerrainService, private rollService: RollService) {
     this.terrainSubscription = terrainService.terrain$.subscribe(
       terrain => {
-        this.terrain = terrain;
+        this.selectedTerrain = terrain;
       }
     );
     this.rollSubscription = this.rollService.roll$.subscribe(
       roll => {
-        this.rollService.sendRollDataToParent({charName: "testName", action: "testAction", terrain: "testrain", modifier: -1} );
+        this.rollService.sendRollDataToParent({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: -1} );
       }
     );
    }
 
   ngOnInit(): void {
   }
+
+  selectAction(action){
+    this.action = action
+ }
 
 }

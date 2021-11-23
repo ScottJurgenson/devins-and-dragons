@@ -3,37 +3,28 @@
       <h5 class="card-title">{{char.charName}}</h5>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio1">Nav/Track</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio1" (click)="selectAction('nav')">Nav/Track</label>
       
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio2">Scout</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio2" (click)="selectAction('scout')">Scout</label>
       
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio3" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio3">Hunt/Forage</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio3" (click)="selectAction('hunt')">Hunt/Forage</label>
 
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio4" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio4">Map</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio4" (click)="selectAction('map')">Map</label>
 
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio5" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio5">Entertain</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio5" (click)="selectAction('entertain')">Entertain</label>
 
         <input type="radio" class="btn-check" name="{{char.charName}}btnradio" id="{{char.charName}}btnradio6" autocomplete="off">
-        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio6">Watch</label>
+        <label class="btn btn-outline-primary" for="{{char.charName}}btnradio6" (click)="selectAction('watch')">Watch</label>
         </div>
 
-        <select class="form-select" aria-label="Default select example">
-          <option selected>{{terrain}}</option>
-          <option value="road">Road</option>
-          <option value="grass">Grass</option>
-          <option value="river">river</option>
-          <option value="forest">Forest</option>
-          <option value="hill">Hill</option>
-          <option value="forrestHill">Forest Hill</option>
-          <option value="forsetDense">Forest Dense</option>
-          <option value="swamp">Swamp</option>
-          <option value="marsh">Marsh</option>
-          <option value="mountain">Mountain</option>
-          <option value="cliff">Cliff</option>
+        <select [(ngModel)]="selectedTerrain" name="first">
+          <option *ngFor="let o of terrainOptions">
+            {{o.name}}
+          </option>
         </select>
 
 

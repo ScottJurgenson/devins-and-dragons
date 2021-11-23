@@ -1,5 +1,7 @@
+import { Character } from "./character";
+
 export interface RollData {
-charName: string;
+char: Character;
 action: string;
 terrain: string;
 modifier: number;
