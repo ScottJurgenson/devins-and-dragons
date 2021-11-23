@@ -25,4 +25,4 @@ export class RollService {
     this.rollData.next(singlerollData);
   }
 
-}
+} 
