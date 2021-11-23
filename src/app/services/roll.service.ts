@@ -35,7 +35,7 @@ export class RollService {
     let modifier: number = singleRollData.modifier
     let rollTotal = rawRoll+modifier
     let success: string = this.determineSuccess(action, singleRollData.terrain, rollTotal) 
-    this.rollResult.next(playerName + " " + success + " at " + action + " with a roll of " + rollTotal + " ("+rawRoll +modifier + ")")
+    this.rollResult.next(playerName + " " + success + " at " + action + " with a roll of " + rollTotal + " ("+rawRoll + "," +modifier + ")")
   }
 
   rollD20(): number{

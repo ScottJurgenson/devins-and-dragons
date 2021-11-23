@@ -19,6 +19,7 @@ export class AppComponent {
   private rollSubscription: Subscription  
   title = 'devins-and-dragons';
   charList: Character[]
+  resultArray: String[] = ["Results Here"]
   constructor(
     private dbQueryService: DBQueryService,
     private modalService: NgbModal,
@@ -29,7 +30,7 @@ export class AppComponent {
       
     this.rollSubscription = rollService.rollResult$.subscribe(
         rollData => {
-          console.log(rollData)
+          this.resultArray.push(rollData)
         }
       );
     }
@@ -39,7 +40,6 @@ export class AppComponent {
   ngOnInit() {
     this.dbQueryService.getAllChar().subscribe((data: any) => {
       this.charList = data
-      console.log("charlist:" + this.charList)
     })
   }
 
@@ -54,6 +54,7 @@ export class AppComponent {
   }
   
   roll(){
+    this.resultArray = [];
     this.rollService.initiateRoll();
   }
 
