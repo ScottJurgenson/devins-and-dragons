@@ -5,6 +5,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CharModalComponent } from './char-modal/char-modal.component';
 import { TerrainService } from './services/terrain.service';
 import { RollService } from './services/roll.service';
+import { HazardService } from './services/hazard.service';
 import { Subscription } from 'rxjs';
 
 
@@ -25,6 +26,7 @@ export class AppComponent {
     private modalService: NgbModal,
     private terrainService: TerrainService,
     private rollService: RollService,
+    private hazzardService: HazardService
       ) {
 
       
@@ -50,11 +52,11 @@ export class AppComponent {
   
   setTerrain(terrain){
     this.terrainService.setTerrain(terrain);
-
   }
   
   roll(){
     this.resultArray = [];
+    this.hazzardService.hazardCheck();
     this.rollService.initiateRoll();
   }
 
