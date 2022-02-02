@@ -17,16 +17,19 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
 
-  private rollSubscription: Subscription  
+  private rollSubscription: Subscription 
+  private hazzardSubscription: Subscription
   title = 'devins-and-dragons';
   charList: Character[]
   resultArray: String[] = ["Results Here"]
-  constructor(
+  hazzardResult: String = "test"
+  selectedTerrain: String = "road"
+  constructor( 
     private dbQueryService: DBQueryService,
     private modalService: NgbModal,
     private terrainService: TerrainService,
     private rollService: RollService,
-    private hazzardService: HazardService
+    private hazzardService: HazardService,
       ) {
 
       
@@ -35,6 +38,9 @@ export class AppComponent {
           this.resultArray.push(rollData)
         }
       );
+      this.hazzardSubscription = hazzardService.hazzard$.subscribe(
+        data => this.hazzardResult= data
+      )
     }
    
 
@@ -51,13 +57,14 @@ export class AppComponent {
   }
   
   setTerrain(terrain){
+    this.selectedTerrain = terrain
     this.terrainService.setTerrain(terrain);
   }
   
   roll(){
     this.resultArray = [];
-    this.hazzardService.hazardCheck();
     this.rollService.initiateRoll();
+    this.hazzardService.hazardCheck(this.selectedTerrain);
   }
 
 

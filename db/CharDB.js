@@ -12,7 +12,7 @@ class CharDB {
           dexterity INTEGER,
           perception INTEGER,
           intelligence INTEGER,
-          charisma INTEGER,        
+          charisma INTEGER   
           )`;
     return this.DAO.run(sql);
   }
