@@ -18,7 +18,6 @@ app.get("/test", (req, res, next) => {
 });
 
 app.get("/char", async function (req, res, next) {
-  console.log("nope");
   return charDB.getAll().then((response) => res.json(response));
 });
 
@@ -26,7 +25,7 @@ app.post("/char/create", function (req, res, next) {
   charDB.createTable();
   let char = req.body;
   console.log(char)
-  return charDB.create(char.charName, char.strength, char.dexterity, char.constitution, char.intelligence, char.wisdom, char.charisma, char.strengthMod, char.dexterityMod, char.constitutionMod, char.intelligenceMod, char.wisdomMod, char.charismaMod)
+  return charDB.create(char.charName, char.survival, char.dexterity, char.perception, char.intelligence, char.charisma)
 });
 
 app.post("/char/update/:id", function (req, res, next) {

@@ -42,7 +42,28 @@ export class PlayerCardComponent implements OnInit {
     );
     this.rollSubscription = this.rollService.roll$.subscribe(
       roll => {
-        this.rollService.recieveRollData({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: -1} );
+        let modifier = 0
+        switch(this.action){
+          case "navigate/track":
+            modifier = this.char.intelligence;
+            break;
+          case "scout":
+            modifier = this.char.perception + this.char.perception;
+            break;
+          case "hunt/forage":
+            modifier = this.char.survival;
+            break;   
+          case "map":
+            modifier = this.char.intelligence;
+            break; 
+          case "entertain":
+            modifier = this.char.charisma;
+            break;  
+          case "watch":
+            modifier = this.char.perception;
+            break;      
+        }
+        this.rollService.recieveRollData({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: modifier} );
       }
     );
    }

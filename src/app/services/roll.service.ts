@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { RollData } from '../models/rollData';
+import { RollData } from '../models/RollData';
 import { terrainSuccess, excelMod } from 'src/data/terrainSuccess';
 
 @Injectable({

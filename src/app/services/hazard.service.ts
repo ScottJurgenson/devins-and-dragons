@@ -13,8 +13,8 @@ export class HazardService {
   hazardCheck(terrain) {
     console.log('hazzard check called: ' + terrain);
     console.log(hazzardThreshold[terrain]);
-    let d20Roll = Math.floor(Math.random() * 20) + 1;
-    if (d20Roll <= hazzardThreshold[terrain]) {
+    let d100Roll = Math.floor(Math.random() * 100) + 1;
+    if (d100Roll <= hazzardThreshold[terrain]) {
       this.hazard.next(terrain + ' Hazard Encountered');
     } else {
       this.hazard.next('no hazzard');
