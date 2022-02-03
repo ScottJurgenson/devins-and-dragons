@@ -45,10 +45,10 @@ export class PlayerCardComponent implements OnInit {
         let modifier = 0
         switch(this.action){
           case "navigate/track":
-            modifier = this.char.intelligence;
+            modifier = this.char.survival;
             break;
           case "scout":
-            modifier = this.char.perception + this.char.perception;
+            modifier = this.char.dexterity + this.char.perception;
             break;
           case "hunt/forage":
             modifier = this.char.survival;
