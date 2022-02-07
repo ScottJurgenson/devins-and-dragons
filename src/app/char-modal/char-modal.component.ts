@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectorRef} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -14,6 +14,8 @@ import { Character } from '../models/character';
 })
 export class CharModalComponent {
 
+  @Output()
+  updateDBEvent: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() name;
 
@@ -30,12 +32,12 @@ export class CharModalComponent {
   );
 
 
-  constructor(private dbQueryService: DBQueryService,private modalService: NgbModal, private ref: ChangeDetectorRef) {}
+  constructor(private dbQueryService: DBQueryService,private modalService: NgbModal) {}
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.onSubmit()
-      this.ref.markForCheck();
+      this.updateDBEvent.emit();
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
