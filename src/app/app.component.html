@@ -23,7 +23,7 @@
     </div>
     <button class="btn btn-lg btn-outline-primary" (click)="roll()">Roll</button>
     <br>
-    <ngbd-char-modal (updateDBEvent) = "updateDB()"></ngbd-char-modal>
+    <ngbd-char-modal (updateDBEvent) = "updateDB()" [char]="'none'"></ngbd-char-modal>
 </div>
   {{ hazzardResult }}
 <ul>

@@ -24,4 +24,9 @@
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Hero</button>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)" *ngIf="char=='none'; else editButton">Add Hero</button>
+
+<ng-template #editButton>
+  <i class="bi bi-pencil-fill" (click)="open(content)"></i>
+</ng-template>

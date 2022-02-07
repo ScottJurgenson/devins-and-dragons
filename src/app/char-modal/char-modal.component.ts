@@ -17,10 +17,10 @@ export class CharModalComponent {
   @Output()
   updateDBEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() name;
+  @Input() char;
 
   closeResult = '';
-
+  editMode: boolean = false
   charForm = new FormGroup({
     charName: new FormControl('', Validators.required),
     survival: new FormControl('', Validators.required),
@@ -31,11 +31,32 @@ export class CharModalComponent {
   }
   );
 
+  
+
 
   constructor(private dbQueryService: DBQueryService,private modalService: NgbModal) {}
 
+  
+  ngOnInit() {
+    if (this.char.charname){
+      this.editMode = true;
+    }
+  }
   open(content) {
+      if (this.char != 'none'){
+        console.log(this.char)
+      this.charForm.setValue({
+        charName: this.char.charName,
+        survival: this.char.survival,
+        dexterity: this.char.dexterity,
+        perception: this.char.perception, 
+        intelligence: this.char.intelligence,
+        charisma: this.char.charisma
+       })
+      }
+
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      
       this.onSubmit()
       this.updateDBEvent.emit();
       this.closeResult = `Closed with: ${result}`;
