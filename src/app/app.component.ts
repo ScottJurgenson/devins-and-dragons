@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { DBQueryService } from './dbquery.service';
 import { Character, charList } from './models/character';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -67,8 +67,5 @@ export class AppComponent {
     this.hazzardService.hazardCheck(this.selectedTerrain);
   }
 
-
-
-  
 }
 

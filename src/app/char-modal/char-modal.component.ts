@@ -1,18 +1,23 @@
-import { Component, Input } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, ChangeDetectorRef} from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DBQueryService } from '../dbquery.service';
 import { Character } from '../models/character';
 
 
+
 @Component({
-  selector: 'app-char-modal',
+  selector: 'ngbd-char-modal',
   templateUrl: './char-modal.component.html',
   styleUrls: ['./char-modal.component.css'],
 })
 export class CharModalComponent {
+
+
   @Input() name;
+
+  closeResult = '';
 
   charForm = new FormGroup({
     charName: new FormControl('', Validators.required),
@@ -25,9 +30,31 @@ export class CharModalComponent {
   );
 
 
-  constructor(private dbQueryService: DBQueryService,public activeModal: NgbActiveModal) {}
+  constructor(private dbQueryService: DBQueryService,private modalService: NgbModal, private ref: ChangeDetectorRef) {}
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.onSubmit()
+      this.ref.markForCheck();
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 
   onSubmit() {
+    console.log(this.charForm)
     if (this.charForm.valid){
       let newChar: Character = {    
         charName: this.charForm.value.charName,
