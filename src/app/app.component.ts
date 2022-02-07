@@ -17,7 +17,7 @@ import { collectExternalReferences } from '@angular/compiler';
   providers: [TerrainService],
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   selectedID = 'Nope';
   private rollSubscription: Subscription 
   private hazzardSubscription: Subscription
@@ -33,7 +33,6 @@ export class AppComponent {
     private terrainService: TerrainService,
     private rollService: RollService,
     private hazzardService: HazardService,
-    private changeDetectorref: ChangeDetectorRef
       ) {
 
       
@@ -67,8 +66,7 @@ export class AppComponent {
 
   updateDB() {
     this.dbQueryService.getAllChar().subscribe((data: any) => {
-      this.charList = []
-      this.ngOnInit()
+      window.location.reload();
     })
   }
   
