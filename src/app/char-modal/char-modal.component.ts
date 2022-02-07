@@ -56,8 +56,13 @@ export class CharModalComponent {
       }
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      if (this.char == 'none'){
       
-      this.onSubmit()
+      this.addChar()
+      }
+      else {
+        this.updateChar()
+      }
       this.updateDBEvent.emit();
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -76,8 +81,7 @@ export class CharModalComponent {
   }
 
 
-  onSubmit() {
-    console.log(this.charForm)
+  addChar() {
     if (this.charForm.valid){
       let newChar: Character = {    
         charName: this.charForm.value.charName,
@@ -92,5 +96,22 @@ export class CharModalComponent {
     }
     else
       console.log("NO.K.")
+  }
+
+  updateChar(){
+    
+    if (this.charForm.valid){
+      let updateChar: Character = {  
+        id: this.char.id,  
+        charName: this.charForm.value.charName,
+        survival: this.charForm.value.survival,
+        dexterity: this.charForm.value.dexterity,
+        perception: this.charForm.value.perception,
+        intelligence: this.charForm.value.intelligence,
+        charisma: this.charForm.value.charisma,
+      }
+      this.dbQueryService.updateChar(updateChar).subscribe((data: any) => {
+      })
+  }
   }
 }

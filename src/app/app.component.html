@@ -7,7 +7,7 @@
   <p class="lead">Please add a character to begin</p>
   <hr class="my-4">
   <p class="lead">
-    <ngbd-char-modal (updateDBEvent) = "updateDB()"></ngbd-char-modal>
+    <ngbd-char-modal [char]="'none'" (updateDBEvent) = "updateDB()"></ngbd-char-modal>
   </p>
 </div>
 <div *ngIf="charList">

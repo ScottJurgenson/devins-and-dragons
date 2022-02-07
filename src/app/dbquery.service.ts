@@ -21,11 +21,11 @@ export class DBQueryService {
     return this.http.post(`${baseUrl}/char/create`, char);
   }
 
-//   updateChar(char: Character) {
-//     console.log('createChar ' + JSON.stringify(char));
-//     let id = char.id
-//     return this.request('post', `${baseUrl}/char/update/${id}`, char);
-//   }  
+  updateChar(char: Character) {
+    console.log('updateChar ' + JSON.stringify(char));
+    let id = char.id
+    return this.http.post(`${baseUrl}/char/update/${char.id}`, char);
+  }  
 
   getAllChar() {
     return this.http.get(`${baseUrl}/char`, {observe: 'body', responseType: 'json'});
