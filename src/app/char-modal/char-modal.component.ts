@@ -17,10 +17,10 @@ export class CharModalComponent {
   @Output()
   updateDBEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() name;
+  @Input() char;
 
   closeResult = '';
-
+  editMode: boolean = false
   charForm = new FormGroup({
     charName: new FormControl('', Validators.required),
     survival: new FormControl('', Validators.required),
@@ -31,12 +31,38 @@ export class CharModalComponent {
   }
   );
 
+  
+
 
   constructor(private dbQueryService: DBQueryService,private modalService: NgbModal) {}
 
+  
+  ngOnInit() {
+    if (this.char.charname){
+      this.editMode = true;
+    }
+  }
   open(content) {
+      if (this.char != 'none'){
+        console.log(this.char)
+      this.charForm.setValue({
+        charName: this.char.charName,
+        survival: this.char.survival,
+        dexterity: this.char.dexterity,
+        perception: this.char.perception, 
+        intelligence: this.char.intelligence,
+        charisma: this.char.charisma
+       })
+      }
+
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.onSubmit()
+      if (this.char == 'none'){
+      
+      this.addChar()
+      }
+      else {
+        this.updateChar()
+      }
       this.updateDBEvent.emit();
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -55,8 +81,7 @@ export class CharModalComponent {
   }
 
 
-  onSubmit() {
-    console.log(this.charForm)
+  addChar() {
     if (this.charForm.valid){
       let newChar: Character = {    
         charName: this.charForm.value.charName,
@@ -71,5 +96,22 @@ export class CharModalComponent {
     }
     else
       console.log("NO.K.")
+  }
+
+  updateChar(){
+    
+    if (this.charForm.valid){
+      let updateChar: Character = {  
+        id: this.char.id,  
+        charName: this.charForm.value.charName,
+        survival: this.charForm.value.survival,
+        dexterity: this.charForm.value.dexterity,
+        perception: this.charForm.value.perception,
+        intelligence: this.charForm.value.intelligence,
+        charisma: this.charForm.value.charisma,
+      }
+      this.dbQueryService.updateChar(updateChar).subscribe((data: any) => {
+      })
+  }
   }
 }

@@ -69,6 +69,10 @@ export class AppComponent{
       window.location.reload();
     })
   }
+
+  editChar(char){
+    console.log(char)
+  }
   
   roll(){
     this.resultArray = [];

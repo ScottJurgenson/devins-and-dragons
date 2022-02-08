@@ -29,8 +29,8 @@ app.post("/char/create", function (req, res, next) {
 });
 
 app.post("/char/update/:id", function (req, res, next) {
-  console.log("id");
-  res.json(req.body);
+  let char = req.body;
+  return charDB.update(char)
 });
 
 app.get("/char/delete/:id", async function (req, res, next) {

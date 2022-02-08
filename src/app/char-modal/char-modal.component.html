@@ -20,8 +20,20 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)= "modal.close('Save click')">Add</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"
+      *ngIf="char=='none'; else editIcon">Add</button>
+
+    <ng-template #editIcon>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
+    </ng-template>
+
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Hero</button>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)" *ngIf="char=='none'; else editIcon">Add
+  Hero</button>
+
+<ng-template #editIcon>
+  <i class="bi bi-pencil-fill" (click)="open(content)"></i>
+</ng-template>
