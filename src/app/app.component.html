@@ -7,7 +7,7 @@
   <p class="lead">Please add a character to begin</p>
   <hr class="my-4">
   <p class="lead">
-    <button class="btn btn-lg btn-outline-primary" (click)="open()">Add A New Hero</button>
+    <ngbd-char-modal [char]="'none'" (updateDBEvent) = "updateDB()"></ngbd-char-modal>
   </p>
 </div>
 <div *ngIf="charList">
@@ -23,7 +23,7 @@
     </div>
     <button class="btn btn-lg btn-outline-primary" (click)="roll()">Roll</button>
     <br>
-    <button class="btn btn-lg btn-outline-primary" (click)="open()">Add A New Hero</button>
+    <ngbd-char-modal (updateDBEvent) = "updateDB()" [char]="'none'"></ngbd-char-modal>
 </div>
   {{ hazzardResult }}
 <ul>

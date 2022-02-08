@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef} from '@angular/core';
 import { DBQueryService } from './dbquery.service';
 import { Character, charList } from './models/character';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,8 @@ import { TerrainService } from './services/terrain.service';
 import { RollService } from './services/roll.service';
 import { HazardService } from './services/hazard.service';
 import { Subscription } from 'rxjs';
+import { collectExternalReferences } from '@angular/compiler';
+
 
 
 @Component({
@@ -15,8 +17,8 @@ import { Subscription } from 'rxjs';
   providers: [TerrainService],
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-
+export class AppComponent{
+  selectedID = 'Nope';
   private rollSubscription: Subscription 
   private hazzardSubscription: Subscription
   title = 'devins-and-dragons';
@@ -24,6 +26,7 @@ export class AppComponent {
   resultArray: String[] = ["Results Here"]
   hazzardResult: String = "test"
   selectedTerrain: String = "road"
+  
   constructor( 
     private dbQueryService: DBQueryService,
     private modalService: NgbModal,
@@ -60,6 +63,16 @@ export class AppComponent {
     this.selectedTerrain = terrain
     this.terrainService.setTerrain(terrain);
   }
+
+  updateDB() {
+    this.dbQueryService.getAllChar().subscribe((data: any) => {
+      window.location.reload();
+    })
+  }
+
+  editChar(char){
+    console.log(char)
+  }
   
   roll(){
     this.resultArray = [];
@@ -67,8 +80,5 @@ export class AppComponent {
     this.hazzardService.hazardCheck(this.selectedTerrain);
   }
 
-
-
-  
 }
 

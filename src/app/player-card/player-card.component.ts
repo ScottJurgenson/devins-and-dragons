@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 import { TerrainService } from '../services/terrain.service';
 import { Subscription } from 'rxjs';

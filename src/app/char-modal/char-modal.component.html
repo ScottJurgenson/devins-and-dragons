@@ -1,13 +1,39 @@
-<form [formGroup]="charForm" (ngSubmit)="onSubmit()">
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="charForm">
 
-    <input id="charName" type="text" formControlName="charName" placeholder="Name">
-  
-    <input id="survival" type="number" formControlName="survival" placeholder="survival">
-    <input id="dexterity" type="number" formControlName="dexterity" placeholder="dexterity">
-    <input id="perception" type="number" formControlName="perception" placeholder="perception">
-    <input id="intelligence" type="number" formControlName="intelligence" placeholder="intelligence">
-    <input id="charisma" type="number" formControlName="charisma" placeholder="charisma">
-    <button class="button" type="submit">Add</button>
+      <input id="charName" type="text" formControlName="charName" placeholder="Name">
 
-  
-  </form>
+      <input id="survival" type="number" formControlName="survival" placeholder="survival">
+      <input id="dexterity" type="number" formControlName="dexterity" placeholder="dexterity">
+      <input id="perception" type="number" formControlName="perception" placeholder="perception">
+      <input id="intelligence" type="number" formControlName="intelligence" placeholder="intelligence">
+      <input id="charisma" type="number" formControlName="charisma" placeholder="charisma">
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"
+      *ngIf="char=='none'; else editIcon">Add</button>
+
+    <ng-template #editIcon>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
+    </ng-template>
+
+  </div>
+</ng-template>
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)" *ngIf="char=='none'; else editIcon">Add
+  Hero</button>
+
+<ng-template #editIcon>
+  <i class="bi bi-pencil-fill" (click)="open(content)"></i>
+</ng-template>
