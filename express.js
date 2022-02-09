@@ -25,7 +25,7 @@ app.post("/char/create", function (req, res, next) {
   charDB.createTable();
   let char = req.body;
   console.log(char)
-  return charDB.create(char.charName, char.survival, char.dexterity, char.perception, char.intelligence, char.charisma)
+  return charDB.create(char.charName, char.navigateTrackMod, char.scoutMod, char.huntForageMod, char.mapMod, char.entertainMod, char.watchMod)
 });
 
 app.post("/char/update/:id", function (req, res, next) {

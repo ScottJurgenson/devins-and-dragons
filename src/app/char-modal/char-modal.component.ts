@@ -23,11 +23,12 @@ export class CharModalComponent {
   editMode: boolean = false
   charForm = new FormGroup({
     charName: new FormControl('', Validators.required),
-    survival: new FormControl('', Validators.required),
-    dexterity: new FormControl('', Validators.required),
-    perception: new FormControl('', Validators.required),
-    intelligence: new FormControl('', Validators.required),
-    charisma: new FormControl('', Validators.required),
+    navigateTrackMod: new FormControl('', Validators.required),
+    scoutMod: new FormControl('', Validators.required),
+    huntForageMod: new FormControl('', Validators.required),
+    mapMod: new FormControl('', Validators.required),
+    entertainMod: new FormControl('', Validators.required),
+    watchMod: new FormControl('', Validators.required),
   }
   );
 
@@ -47,11 +48,12 @@ export class CharModalComponent {
         console.log(this.char)
       this.charForm.setValue({
         charName: this.char.charName,
-        survival: this.char.survival,
-        dexterity: this.char.dexterity,
-        perception: this.char.perception, 
-        intelligence: this.char.intelligence,
-        charisma: this.char.charisma
+        navigateTrackMod: this.char.navigateTrackMod,
+        scoutMod: this.char.scoutMod,
+        huntForageMod: this.char.huntForageMod, 
+        mapMod: this.char.mapMod,
+        entertainMod: this.char.entertainMod,
+        watchMod: this.char.watchMod,
        })
       }
 
@@ -85,11 +87,12 @@ export class CharModalComponent {
     if (this.charForm.valid){
       let newChar: Character = {    
         charName: this.charForm.value.charName,
-        survival: this.charForm.value.survival,
-        dexterity: this.charForm.value.dexterity,
-        perception: this.charForm.value.perception,
-        intelligence: this.charForm.value.intelligence,
-        charisma: this.charForm.value.charisma,
+        navigateTrackMod: this.charForm.value.navigateTrackMod,
+        scoutMod: this.charForm.value.scoutMod,
+        huntForageMod: this.charForm.value.huntForageMod,
+        mapMod: this.charForm.value.mapMod,
+        entertainMod: this.charForm.value.entertainMod,
+        watchMod: this.charForm.value.watchMod,
       }
       this.dbQueryService.createChar(newChar).subscribe((data: any) => {
       })
@@ -104,11 +107,12 @@ export class CharModalComponent {
       let updateChar: Character = {  
         id: this.char.id,  
         charName: this.charForm.value.charName,
-        survival: this.charForm.value.survival,
-        dexterity: this.charForm.value.dexterity,
-        perception: this.charForm.value.perception,
-        intelligence: this.charForm.value.intelligence,
-        charisma: this.charForm.value.charisma,
+        navigateTrackMod: this.charForm.value.navigateTrackMod,
+        scoutMod: this.charForm.value.scoutMod,
+        huntForageMod: this.charForm.value.huntForageMod,
+        mapMod: this.charForm.value.mapMod,
+        entertainMod: this.charForm.value.entertainMod,
+        watchMod: this.charForm.value.watchMod,
       }
       this.dbQueryService.updateChar(updateChar).subscribe((data: any) => {
       })

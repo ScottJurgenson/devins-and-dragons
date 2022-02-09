@@ -45,22 +45,22 @@ export class PlayerCardComponent implements OnInit {
         let modifier = 0
         switch(this.action){
           case "navigate/track":
-            modifier = this.char.survival;
+            modifier = this.char.navigateTrackMod;
             break;
           case "scout":
-            modifier = this.char.dexterity + this.char.perception;
+            modifier = this.char.scoutMod;
             break;
           case "hunt/forage":
-            modifier = this.char.survival;
+            modifier = this.char.huntForageMod;
             break;   
           case "map":
-            modifier = this.char.intelligence;
+            modifier = this.char.mapMod;
             break; 
           case "entertain":
-            modifier = this.char.charisma;
+            modifier = this.char.entertainMod;
             break;  
           case "watch":
-            modifier = this.char.perception;
+            modifier = this.char.watchMod;
             break;      
         }
         this.rollService.recieveRollData({char: this.char, action: this.action, terrain: this.selectedTerrain, modifier: modifier} );

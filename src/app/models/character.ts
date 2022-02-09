@@ -1,10 +1,11 @@
 export interface Character {
     charName: string;
-    survival: number;
-    dexterity: number;
-    perception: number;
-    intelligence: number; 
-    charisma: number,
+    navigateTrackMod: number;
+    scoutMod: number;
+    huntForageMod: number;
+    mapMod: number; 
+    entertainMod: number,
+    watchMod: number, 
     id?: string
 }
 
