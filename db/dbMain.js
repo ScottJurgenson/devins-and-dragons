@@ -11,7 +11,7 @@ const terrainDB = new TerrainDB(DAO)
 
 function addChar(char) {
   charDB.createTable();
-  charDB.create(char.name, char.strength, car.dexterity, char.constitution, char.inteligence, char.wisdom, char.charisma, char.strengthMod, char.dexterityMod, char.constitutionMod, char.inteligenceMod, char.wisdomMod, char.chrismaMod);
+  charDB.create(char.name, char.navigateTrackMod, car.scoutMod, char.constitution, char.mapMod, char.wisdom, char.entertainMod, char.watchMod);
 
 }
 

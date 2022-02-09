@@ -8,32 +8,35 @@ class CharDB {
         CREATE TABLE IF NOT EXISTS chars (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           charName TEXT,
-          survival INTEGER,
-          dexterity INTEGER,
-          perception INTEGER,
-          intelligence INTEGER,
-          charisma INTEGER   
+          navigateTrackMod INTEGER,
+          scoutMod INTEGER,
+          huntForageMod INTEGER,
+          mapMod INTEGER,
+          entertainMod INTEGER,
+          watchMod INTEGER   
           )`;
     return this.DAO.run(sql);
   }
 
   create(
     charName,
-    survival,
-    dexterity,
-    perception,
-    intelligence,
-    charisma
+    navigateTrackMod,
+    scoutMod,
+    huntForageMod,
+    mapMod,
+    entertainMod,
+    watchMod
   ) {
     return this.DAO.run(
-      "INSERT INTO chars (charName, survival, dexterity, perception, intelligence, charisma) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO chars (charName, navigateTrackMod, scoutMod, huntForageMod, mapMod, entertainMod, watchMod) VALUES (?, ?, ?, ?, ?, ?,?)",
       [
         charName,
-        survival,
-        dexterity,
-        perception,
-        intelligence,
-        charisma
+        navigateTrackMod,
+        scoutMod,
+        huntForageMod,
+        mapMod,
+        entertainMod,
+        watchMod
       ]
     );
   }
@@ -42,28 +45,31 @@ class CharDB {
     const {
       id,
       charName,
-      survival,
-      dexterity,
-      perception,
-      intelligence,
-      charisma
+      navigateTrackMod,
+      scoutMod,
+      huntForageMod,
+      mapMod,
+      entertainMod,
+      watchMod
     } = char;
     return this.DAO.run(
       `UPDATE chars
       SET charname = ?,
-        survival = ?,
-        dexterity = ?,
-        perception = ?,
-        intelligence = ?,
-        charisma = ?
+        navigateTrackMod = ?,
+        scoutMod = ?,
+        huntForageMod = ?,
+        mapMod = ?,
+        entertainMod = ?,
+        watchMod = ?
       WHERE id = ?`,
       [
         charName,
-        survival,
-        dexterity,
-        perception,
-        intelligence,
-        charisma,
+        navigateTrackMod,
+        scoutMod,
+        huntForageMod,
+        mapMod,
+        entertainMod,
+        watchMod,
         id
       ]
     );
